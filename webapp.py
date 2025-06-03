@@ -16,7 +16,7 @@ brand_names = df["Brand"].unique()
 
 # Creating selectbox for receiving or stocking
 
-option = st.selectbox("Choose", ("Receiving", "Stocking", "Edit"))
+option = st.sidebar.radio("Choose", ("Receiving", "Stocking", "Edit"))
 
 if option == "Receiving":
     
@@ -34,6 +34,8 @@ if option == "Receiving":
     if st.button("insert"):
         df.loc[len(df)] = [brand_option, color, total, 0]
         df.to_csv("colors_inventory.csv", index=False)
+
+    # updating color using empty  
 
     # Updating received product to the Inventory
     st.write("Input receiving order: ")
@@ -81,6 +83,7 @@ if option == "Stocking":
     color_name = brand_df["Color"].unique()
 
     update_df["Color"] = color_name
+    update_df["on Stock"] = brand_df["Stock"]
     update_df["Stocking"] = 0
     update_df = st.data_editor(update_df)
 
