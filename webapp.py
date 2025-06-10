@@ -78,8 +78,6 @@ if option == "Stocking":
 
 
     brand_df = df.query("Brand == @brand_option")
-
-    st.display(brand_df)
     
     update_df = pd.DataFrame()
     color_name = brand_df["Color"].unique()
